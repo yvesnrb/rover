@@ -1,0 +1,36 @@
+* Rover
+
+This project is a small programming exercise. The point is to ingest a text file
+containing information on the positioning of a number of Mars rovers and their
+movement instructions. The output should be the final positioning of each
+rover. Here is an example input:
+
+#+begin_src fundamental
+  5 5
+  1 2 N
+  LMLMLMLMM
+  3 3 E
+  MMRMMRMRRM
+#+end_src
+
+Here, the first line of the input is the =x, y= coordinate of the upper-right
+corner of the area in which the rovers are allowed to move. =0, 0= is assumed to
+be the lower-left coordinates.
+
+The rest of the lines are to be understood in pairs. Each pair represents the
+positioning and the movement instructions of one rover. The first line of each
+pair contains an =x, y= coordinate of the rover and a heading letter
+representing the four cardinal points (=N=, =S=, =E= or =W=). The second line of
+each pair is a sequence of commands to be sent to the rover: =L=, =R= or
+=M=. =L= and =R= make the rover spin 90 degress left or right respectively. =M=
+makes the rover move forward by one grid unit.
+
+Each rover is to move sequentially.
+
+The output of this program should be the final positioning of each rover. The
+expected output for the example input should be:
+
+#+begin_src fundamental
+  1 3 N
+  5 1 E
+#+end_src
