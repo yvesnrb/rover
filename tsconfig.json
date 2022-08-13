@@ -5,7 +5,8 @@
     "module": "es2020",
     "baseUrl": "./src",
     "paths": {
-	    "@providers/*": ["providers/*"]
+	    "@providers/*": ["providers/*"],
+      "@entities/*": ["entities/*"]
     },
     "sourceMap": true,
     "outDir": "./dist",

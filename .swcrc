@@ -14,7 +14,8 @@
 	  "keepClassNames": false,
 	  "baseUrl": "./src",
 	  "paths": {
-	    "@providers/*": ["./providers/*"]
+	    "@providers/*": ["./providers/*"],
+      "@entities/*": ["./entities/*"]
 	  }
   },
   "minify": false,
