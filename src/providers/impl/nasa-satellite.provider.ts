@@ -2,8 +2,14 @@ import { Command } from "@entities/command.entity";
 import { Heading } from "@entities/heading.entity";
 import { Position } from "@entities/position.entity";
 import { SatelliteProvider } from "@providers/satellite.provider";
+import { BuildResolverOptions, Lifetime, RESOLVER } from "awilix";
 
 export class NasaSatelliteProvider implements SatelliteProvider {
+  static [RESOLVER]: BuildResolverOptions<SatelliteProvider> = {
+    name: "nasaSatelliteProvider",
+    lifetime: Lifetime.SINGLETON,
+  };
+
   /**
    * Record representing currently open connections and their
    * positions.

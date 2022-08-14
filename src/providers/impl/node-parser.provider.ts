@@ -2,8 +2,14 @@ import { Command } from "@entities/command.entity";
 import { ParsedFile } from "@entities/parsed-file.entity";
 import { Position } from "@entities/position.entity";
 import { ParserProvider } from "@providers/parser.provider";
+import { BuildResolverOptions, Lifetime, RESOLVER } from "awilix";
 
 export class NodeParserProvider implements ParserProvider {
+  static [RESOLVER]: BuildResolverOptions<ParserProvider> = {
+    name: "nodeParserProvider",
+    lifetime: Lifetime.SINGLETON,
+  };
+
   /**
    * Parse the bounds from an array of raw file lines.
    *
