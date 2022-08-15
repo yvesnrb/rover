@@ -34,3 +34,72 @@ expected output for the example input should be:
   1 3 N
   5 1 E
 #+end_src
+
+* Quick Start
+
+Please ensure Node v18.X.X is installed in your environment. First, install and
+build the application using these commands:
+
+#+begin_src shell
+  npm install
+  npm run build
+#+end_src
+
+The command ~npm start [FILE]~ should now be available for loading a file into
+the application and receiving a result. A number of files for testing can be
+found on the =src/fixtures= directory. For example:
+
+#+begin_src shell
+  npm start src/fixtures/ok-input-one.txt
+#+end_src
+
+Fixture files prefixed with =ok-input-= should execute correctly. Other prefixes
+are:
+
+- =malformed-input-= Will cause parsing errors.
+- =oob-input-= Will cause rovers to go out of bounds.
+- =collision-input-= Will cause rovers to collide.
+
+* Tests
+
+The test suite for this application can be executed using:
+
+#+begin_src shell
+  npm test
+#+end_src
+
+Each 'provider' and 'command' implementation has its own unit test. An
+integration test has also been implemented to check known inputs agains the
+expected outputs.
+
+* Project Structure
+
+All project source files reside inside of the =src= directory. Its structure is
+as follows:
+
+- =entities= Contains types representing domain objects.
+- =providers= Contains provider interfaces.
+  - =impl= Contains provider implementations and their unit tests.
+- =commands= Contains command classes and their unit tests. Command classes
+  handle command line actions by leveraging providers.
+- =fixtures= Contains known inputs and outputs for testing purposes.
+- =integration= Contains integration tests.
+
+Additionally the =src= directory contains the =index.ts= file for the
+application entry point and the =container.ts= file for managing dependency
+injection.
+
+Known units of logic that could benefit from being tested separately or mocked
+have been implemented as providers. This allows command classes to only depend
+on abstractions (interfaces) and not on concretions (implementation
+classes). Examples include: loading a file from disk, parsing a file, creating
+and moving rovers etc.
+
+Most of the application logic resides on the implementations for the satellite
+provider and the parser provider.
+
+The satellite provider can create rovers on a field and execute commands on
+them (movement and rotation).
+
+The parser provider can take a raw string from a file input and transform it
+into an object describing the bounds and the rovers.
