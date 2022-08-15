@@ -24,7 +24,8 @@ export class NodeParserProvider implements ParserProvider {
     const x = Number(coordinates[0]);
     const y = Number(coordinates[1]);
 
-    if (!x || !y) throw new Error("parsing failure: invalid bounds");
+    if (isNaN(x) || isNaN(y))
+      throw new Error("parsing failure: invalid bounds");
     return { x, y };
   }
 
@@ -46,7 +47,8 @@ export class NodeParserProvider implements ParserProvider {
     const y = Number(lineArray[1]);
     const heading = lineArray[2];
 
-    if (!x || !y) throw new Error("parsing failure: invalid rover position");
+    if (isNaN(x) || isNaN(y))
+      throw new Error("parsing failure: invalid rover position");
 
     if (
       heading !== "N" &&
