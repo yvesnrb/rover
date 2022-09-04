@@ -81,7 +81,7 @@ export class NasaSatelliteProvider implements SatelliteProvider {
    */
   #rotate(current: Position, direction: "L" | "R"): Position {
     const wrapIndex = (i: number) => ((i % 4) + 4) % 4;
-    const headings = ["N", "E", "S", "W"];
+    const headings: Heading[] = ["N", "E", "S", "W"];
     const currentHeadingIndex = headings.findIndex(
       (h) => h === current.heading
     );
@@ -90,12 +90,12 @@ export class NasaSatelliteProvider implements SatelliteProvider {
       case "L":
         return {
           ...current,
-          heading: headings[wrapIndex(currentHeadingIndex - 1)] as Heading,
+          heading: headings[wrapIndex(currentHeadingIndex - 1)],
         };
       case "R":
         return {
           ...current,
-          heading: headings[wrapIndex(currentHeadingIndex + 1)] as Heading,
+          heading: headings[wrapIndex(currentHeadingIndex + 1)],
         };
     }
   }
